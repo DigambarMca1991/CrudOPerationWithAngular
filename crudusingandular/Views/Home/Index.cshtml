@@ -7,27 +7,38 @@
 <div class="row" ng-app="BookEntry" ng-controller="BookCntrl">
     <div class="col-md-12">
         <h2>BOOKS</h2>
+        <button ng-show="!AddVissible&&!EditVisible" ng-click="Add()" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Add A Item</button>
+
+        <hr />
         <div ng-show="AddVissible">
-            <input type="text" placeholder="Title" ng-model="NewObj.Title"/>
-            <input type="text" ng-model="NewObj.Author"/>
-            <input type="text" ng-model="NewObj.publisher"/>
-            <input type="text" ng-model="NewObj.Isbn"/>
-            <button ng-click="Save()">Save</button>
-            <button ng-click="AddHide()">Cancel</button>
+            <div class="form-group"><input type="text" placeholder="Title" ng-model="NewObj.Title" class="form-control" /></div>
+            
+            
+            <div class="form-group"> <input type="text" placeholder="Author" ng-model="NewObj.Author"  class="form-control" /></div>
+            <div class="form-group"><input type="text" placeholder="Publisher" ng-model="NewObj.publisher"  class="form-control" /></div>
+            <div class="form-group"> <input type="text" placeholder="ISBN" ng-model="NewObj.Isbn"  class="form-control" /></div>
+            <div class="form-group">
+                <button ng-click="AddHide()" class="btn btn-success pull-right">Cancel</button> 
+                <span></span>
+                <button ng-click="Save()" class="btn btn-success pull-right">Save</button>
+               
+            </div>
         </div>
         <div ng-show="EditVisible">
-            <input type="text" placeholder="Title" ng-model="Selected.Title" />
-            <input type="text" ng-model="Selected.Author" />
-            <input type="text" ng-model="Selected.publisher" />
-            <input type="text" ng-model="Selected.Isbn" />
-            <button ng-click="SaveChanges()">Save</button>
-            <button ng-click="EditHide()">Cancel</button>
+            
+            <div class="form-group"><input class="form-control" type="text" placeholder="Title" ng-model="Selected.Title" /></div>
+            <div class="form-group" > <input class="form-control" type="text" ng-model="Selected.Author" /></div>
+            <div class="form-group"><input class="form-control" type="text" ng-model="Selected.publisher" /></div>
+            <div class="form-group"><input class="form-control" type="text" ng-model="Selected.Isbn" /></div>
+            <button ng-click="SaveChanges()" class="btn btn-success">Save</button>
+            <button ng-click="EditHide()" class="btn btn-success">Cancel</button>
         </div>
 
 
-        <table class="table" ng-show="!AddVissible&&!EditVisible">
+        <table class="table table-condensed" ng-show="!AddVissible&&!EditVisible">
+            
             <tr>
-                <td>ID</td><td>Name</td><td>Author</td><td>Publisher</td><td>ISBN</td><td>Action <button ng-click="Add()">Add A Item</button></td>
+                <th>ID</th><th>Name</th><th>Author</th><th>Publisher</th><th>ISBN</th><th></th>
             </tr>
             <tr ng-repeat="item in List">
                 <td>{{item.ID}}</td>
@@ -35,7 +46,7 @@
                 <td>{{item.Author}}</td>
                 <td>{{item.publisher}}</td>
                 <td>{{item.Isbn}}</td>
-                <td><button ng-click="Edit(item)">Edit</button><button ng-click="Delete(item.ID)">Delete</button></td>
+                <td><button ng-click="Edit(item)" class="btn btn-success">Edit</button><button class="btn btn-success" ng-click="Delete(item.ID)">Delete</button></td>
             </tr>
         </table>
 
